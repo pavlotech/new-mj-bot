@@ -43,9 +43,3 @@ model Announcement {
   button        String? @default("")
   createdAt     DateTime @default(now())
 }
-
-model FAQ {
-  id            String  @id @default(uuid()) @unique
-  question      String  @default("")
-  answer        String  @default("")
-}
