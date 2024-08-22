@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:data.db"
+}
+
+model Admin {
+  id            BigInt  @id @unique
+  logs          Boolean @default(true)
+  announcementId String? @default("")
+  faqId         String? @default("")
+  userId        BigInt @default(0)
+}
+
+model User {
+  id            BigInt @id @unique
+  name          String @default("")
+  registry      BigInt @default(0)
+  subscribe     Int    @default(0)
+  prompt        String @default("")
+  ratio         String @default("1:1")
+  lastPay       BigInt @default(0)
+  createdAt     DateTime @default(now())
+  ban           Boolean @default(false)
+  banDate       BigInt @default(0)
+  url           String @default("")
+}
+
+model Task {
+  id            String @id @unique
+  user          BigInt 
+  date          BigInt 
+}
+
+model Announcement {
+  id            String  @id @default(uuid()) @unique
+  title         String  @default("")
+  media         String? @default("")
+  text          String  @default("")
+  button        String? @default("")
+  createdAt     DateTime @default(now())
+}
+
+model FAQ {
+  id            String  @id @default(uuid()) @unique
+  question      String  @default("")
+  answer        String  @default("")
+}
